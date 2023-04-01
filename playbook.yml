@@ -4,6 +4,7 @@
     dest_key: "{{ lookup('env', 'HOME') }}/test/id_rsa"
   pre_tasks:
   - name: Update dnf
+    become: true
     ansible.builtin.dnf:
       name: "*"
       state: latest
