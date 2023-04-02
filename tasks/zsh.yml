@@ -9,6 +9,7 @@
 - name: Change shell to zsh
   ansible.builtin.shell: chsh -s $(which zsh)
   changed_when: false
+  become: true
   tags: *tags_for_zsh_tasks
 
 - name: Check that the somefile.conf exists
