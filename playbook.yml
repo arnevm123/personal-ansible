@@ -2,6 +2,8 @@
   vars:
     source_key: "./.ssh/id_rsa"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    source_api: "./api/.zshapi"
+    dest_api: "{{ lookup('env', 'HOME') }}/.zshapi"
   pre_tasks:
   - name: Update dnf
     become: true
@@ -13,4 +15,5 @@
       - core
   tasks:
     - include: tasks/ssh.yml
+    - include: tasks/apikeys.yml
     - include: tasks/git.yml
