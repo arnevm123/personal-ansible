@@ -14,7 +14,7 @@
 
 - name: Check that the somefile.conf exists
   ansible.builtin.stat:
-    path: /home/theprimeagen/.oh-my-zsh
+    path: ~/.oh-my-zsh
   register: oh_my_stats
   changed_when: false
   tags: *tags_for_zsh_tasks
