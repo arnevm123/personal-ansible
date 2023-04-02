@@ -35,7 +35,6 @@
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
     dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
-  changed_when: false
   tags: *tags_for_zsh_tasks
 
 - name: Install zsh apikeys
@@ -43,5 +42,4 @@
     src: "{{ source_api }}"
     dest: "{{ dest_api }}"
     mode: '0600'
-  when: false
   tags: *tags_for_zsh_tasks
