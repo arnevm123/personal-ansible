@@ -1,6 +1,7 @@
 - name: Install ZSH
   ansible.builtin.dnf:
-    name:zsh
+    name: zsh
+    state: present
   changed_when: false
   tags: &tags_for_zsh_tasks ['install', 'productivity', 'dotfiles', 'zsh']
 
