@@ -2,8 +2,8 @@
   vars:
     source_key: "./.ssh/id_rsa"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
-    source_api: "./api/.zshapi"
-    dest_api: "{{ lookup('env', 'HOME') }}/.zshapi"
+    source_api: "./.zshexports"
+    dest_api: "{{ lookup('env', 'HOME') }}/.zshexports"
   pre_tasks:
   - name: Update dnf
     become: true
