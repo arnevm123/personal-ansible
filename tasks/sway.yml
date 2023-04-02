@@ -1,0 +1,8 @@
+- name: install applications used for sway setup
+  become: true
+  dnf:
+    name: [ "sway", "fuzzel", "rofi", "wlogout"]
+  tags:
+    - install
+    - sway
+    - productivity
