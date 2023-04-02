@@ -7,9 +7,7 @@
   tags: &tags_for_zsh_tasks ['install', 'productivity', 'dotfiles', 'zsh']
 
 - name: Change shell to zsh
-  become_user: arne
   ansible.builtin.shell: chsh -s $(which zsh)
-  changed_when: false
   tags: *tags_for_zsh_tasks
 
 - name: Check that the oh my zsh folder exists
