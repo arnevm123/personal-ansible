@@ -12,23 +12,26 @@
   changed_when: false
   tags: *tags_for_zsh_tasks
 
-- name: Check that the somefile.conf exists
+- name: Check that the oh my zsh folder exists
   ansible.builtin.stat:
     path: ~/.oh-my-zsh
-  register: oh_my_stats
+  register: ohmyzsh_dir
   changed_when: false
   tags: *tags_for_zsh_tasks
 
 - name: Download Oh My Zsh installation script
+  when: not ohmyzsh_dir.stat.exists
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
     dest: /tmp/install-oh-my-zsh.sh
     mode: 'u+x'
 
 - name: Run Oh My Zsh installation script
+  when: not ohmyzsh_dir.stat.exists
   ansible.builtin.script: /tmp/install-oh-my-zsh.sh --unattended
 
 - name: Install zsh-autosuggestions
+  when: not ohmyzsh_dir.stat.exists
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
     dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
