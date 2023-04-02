@@ -15,5 +15,5 @@
       - core
   tasks:
     - include: tasks/ssh.yml
-    - include: tasks/apikeys.yml
+    - include: tasks/zsh.yml
     - include: tasks/git.yml
