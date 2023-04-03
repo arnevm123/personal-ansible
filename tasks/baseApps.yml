@@ -1,7 +1,7 @@
 - name: Install packages
   become: true
   ansible.builtin.dnf:
-    name: ["tmux", "fzf", "neovim", "gimp", "tldr", "ripgrep"]
+    name: ["tmux", "fzf", "neovim", "gimp", "tldr", "ripgrep", "htop", "lsof", "shutter"]
   tags:
     - install
     - productivity
@@ -9,7 +9,7 @@
 - name: Install languages
   become: true
   ansible.builtin.dnf:
-    name: ["npm", "dnf", "go", "shellcheck", "luarocks", "g++", "make", "ansible-lint"]
+    name: ["nodejs", "npm", "dnf", "go", "shellcheck", "luarocks", "g++", "make", "ansible-lint", "python3-pip"]
   tags:
     - install
     - productivity
