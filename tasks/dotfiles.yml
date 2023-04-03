@@ -25,7 +25,7 @@
 - name: Remove zshrc
   ansible.builtin.shell: rm $HOME/.zshrc
   changed_when: false
-  ignore_erro: true
+  ignore_error: true
   tags:
     - install
     - dotfiles
