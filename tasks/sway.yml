@@ -19,7 +19,7 @@
 - name: Install applications used for sway setup 3
   become: true
   ansible.builtin.dnf:
-    name: ["light", "mako", "ncmpcpp", "pavucontrol", "ranger", "swaylock", "termite"]
+    name: ["light", "mako", "ncmpcpp", "pavucontrol", "ranger", "swaylock"]
   tags:
     - install
     - sway
