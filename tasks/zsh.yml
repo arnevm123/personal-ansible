@@ -6,11 +6,11 @@
   changed_when: false
   tags: &tags_for_zsh_tasks ['install', 'productivity', 'dotfiles', 'zsh']
 
-- name: Change shell to zsh
-  become_user: arne
-  changed_when: false
-  ansible.builtin.shell: chsh -s $(which zsh)
-  tags: *tags_for_zsh_tasks
+- name: Change shell to zsh for current user
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    shell: "{{ lookup('pipe', 'which zsh') }}"
 
 - name: Check that the oh my zsh folder exists
   ansible.builtin.stat:
