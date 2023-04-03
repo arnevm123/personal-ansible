@@ -8,6 +8,15 @@
     - dotfiles
     - stow
 
+- name: Remove dotfiles folder
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/dotfiles"
+    state: absent
+  tags:
+    - install
+    - dotfiles
+    - stow
+
 - name: Cloning dotfiles
   ansible.builtin.git:
     repo: 'git@github.com:arnevm123/dotfiles.git'
@@ -22,7 +31,8 @@
     - stow
 
 - name: Stow dotfiles
-  shell: cd $HOME/dotfiles && ./linux
+  ansible.builtin.shell: cd $HOME/dotfiles && ./linux
+  changed_when: false
   tags:
     - install
     - dotfiles
