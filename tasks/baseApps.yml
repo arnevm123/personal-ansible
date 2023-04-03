@@ -15,15 +15,15 @@
     - productivity
     - languages
 
-- name: Rust likes to be special
-  become: true
-  ansible.builtin.command: /bin/bash -o pipefail -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y"
-  args:
-    creates: /usr/local/bin/cargo
-  tags:
-    - install
-    - productivity
-    - languages
+# - name: Rust likes to be special
+#   become: true
+#   ansible.builtin.command: /bin/bash -o pipefail -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y"
+#   args:
+#     creates: /usr/local/bin/cargo
+#   tags:
+#     - install
+#     - productivity
+#     - languages
 
 - name: Install Deno
   become: true
