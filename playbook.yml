@@ -7,7 +7,7 @@
     ansible_user: "arne"
   tasks:
     - name: Update package
-      when: "'arch' not in ansible_os_family"
+      when: "ansible_pkg_mgr != 'pacman'"
       become: true
       ansible.builtin.package:
         name: "*"
@@ -17,7 +17,7 @@
         - core
     - name: Include Arch tasks
       include_tasks: tasks/arch.yml
-      when: "'arch' in ansible_os_family"
+      when: "ansible_pkg_mgr == 'pacman'"
     - include: tasks/ssh.yml
     - include: tasks/zsh.yml
     - include: tasks/git.yml
