@@ -10,7 +10,7 @@
 - name: Install applications used for sway setup 2
   become: true
   ansible.builtin.dnf:
-    name: ["waybar", "wl-clipboard", "mpc", "mpd", "mpv", "grim", "slurp"]
+    name: ["waybar", "wl-clipboard", "mpc", "mpv", "grim", "slurp"]
   tags:
     - install
     - sway
