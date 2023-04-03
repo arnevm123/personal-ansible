@@ -60,7 +60,7 @@
 - name: Install deno
   when: deno_exists is failed
   changed_when: false
-  ansible.builtin.command: /tmp/sh.deno.rs -y
+  ansible.builtin.command: /tmp/sh.deno.rs
   tags:
     - deno
     - install
