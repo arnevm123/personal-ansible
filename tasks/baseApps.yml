@@ -8,7 +8,7 @@
 - name: Install languages
   become: true
   ansible.builtin.dnf:
-    name: ["npm", "dnf", "shellcheck", "stylua", "luarock", "deno", "g++"]
+    name: ["npm", "dnf", "shellcheck", "stylua", "luarock", "deno", "g++", "make"]
   tags:
     - install
     - productivity
