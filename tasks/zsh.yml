@@ -7,6 +7,8 @@
   tags: &tags_for_zsh_tasks ['install', 'productivity', 'dotfiles', 'zsh']
 
 - name: Change shell to zsh
+  become: true
+  changed_when: false
   ansible.builtin.shell: chsh -s $(which zsh)
   tags: *tags_for_zsh_tasks
 
