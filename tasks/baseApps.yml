@@ -12,4 +12,6 @@
     name: com.github.wez.wezterm
     state: present
     remote: flathub
-    install_deps: true
+  tags:
+    - install
+    - productivity
