@@ -5,3 +5,11 @@
   tags:
     - install
     - productivity
+- name: Install languages
+  become: true
+  ansible.builtin.dnf:
+    name: ["npm", "dnf", "shellcheck", "stylua", "luarock", "deno", "g++"]
+  tags:
+    - install
+    - productivity
+    - languages
