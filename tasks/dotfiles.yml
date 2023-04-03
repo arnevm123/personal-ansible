@@ -1,6 +1,6 @@
 - name: Installing stow
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name: stow
     state: present
   tags:

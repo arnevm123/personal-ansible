@@ -1,6 +1,6 @@
 - name: Install Flatpak
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name: flatpak
     state: present
 

@@ -6,9 +6,9 @@
     dest_api: "{{ lookup('env', 'HOME') }}/.zshexports"
     ansible_user: "arne"
   pre_tasks:
-  - name: Update dnf
+  - name: Update package
     become: true
-    ansible.builtin.dnf:
+    ansible.builtin.package:
       name: "*"
       state: latest
     tags:

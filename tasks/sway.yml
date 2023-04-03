@@ -1,6 +1,6 @@
 - name: Install applications used for sway setup 1
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name: ["sway", "fuzzel", "rofi", "wlogout", "fira-code-fonts"]
   tags:
     - install
@@ -9,7 +9,7 @@
 
 - name: Install applications used for sway setup 2
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name: ["waybar", "wl-clipboard", "mpc", "mpv", "grim", "slurp"]
   tags:
     - install
@@ -18,7 +18,7 @@
 
 - name: Install applications used for sway setup 3
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name: ["light", "mako", "ncmpcpp", "pavucontrol", "ranger", "swaylock", "swaybg"]
   tags:
     - install

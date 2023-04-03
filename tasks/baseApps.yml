@@ -1,42 +1,41 @@
 - name: Install packages
   become: true
-  ansible.builtin.dnf:
-    name: ["tmux", "fzf", "neovim", "gimp", "tldr", "ripgrep", "htop", "lsof", "shutter"]
+  ansible.builtin.package:
+    name:
+      - tmux
+      - fzf
+      - neovim
+      - gimp
+      - tldr
+      - ripgrep
+      - htop
+      - lsof
+      - shutter
   tags:
     - install
     - productivity
 
 - name: Install languages
   become: true
-  ansible.builtin.dnf:
-    name: ["nodejs", "npm", "dnf", "go", "shellcheck", "luarocks", "g++", "make", "ansible-lint", "python3-pip"]
+  ansible.builtin.package:
+    name:
+      - nodejs
+      - npm
+      - go
+      - shellcheck
+      - luarocks
+      - g++
+      - make
+      - ansible-lint
+      - python3-pip
   tags:
     - install
     - productivity
     - languages
 
-# - name: Rust likes to be special
-#   become: true
-#   ansible.builtin.command: /bin/bash -o pipefail -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y"
-#   args:
-#     creates: /usr/local/bin/cargo
-#   tags:
-#     - install
-#     - productivity
-#     - languages
-# - name: Install Deno
-#   become: true
-#   ansible.builtin.command: /bin/bash -o pipefail -c "curl -fsSL https://deno.land/x/install/install.sh | sh"
-#   args:
-#     creates: /usr/local/bin/deno
-#   tags:
-#     - install
-#     - productivity
-#     - languages
-
 - name: Check if deno is installed
   changed_when: false
-  ansible.builtin.command: -v deno
+  ansible.builtin.command: deno --version
   register: deno_exists
   ignore_errors: true
   tags:
@@ -60,7 +59,7 @@
 - name: Install deno
   when: deno_exists is failed
   changed_when: false
-  ansible.builtin.command: /tmp/sh.deno.rs
+  ansible.builtin.command: /bin/bash /tmp/sh.deno.rs
   tags:
     - deno
     - install
@@ -69,7 +68,7 @@
 
 - name: Check if cargo is installed
   changed_when: false
-  ansible.builtin.command: -v cargo
+  ansible.builtin.command: cargo --version
   register: cargo_exists
   ignore_errors: true
   tags:
@@ -93,7 +92,7 @@
 - name: Install rust/cargo
   when: cargo_exists is failed
   changed_when: false
-  ansible.builtin.command: /tmp/sh.rustup.rs -y
+  ansible.builtin.command: /bin/bash /tmp/sh.rustup.rs -y
   tags:
     - rust
     - install
