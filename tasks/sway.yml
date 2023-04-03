@@ -1,7 +1,12 @@
 - name: Install applications used for sway setup 1
   become: true
   ansible.builtin.package:
-    name: ["sway", "fuzzel", "rofi", "wlogout", "fira-code-fonts"]
+    name:
+    - sway
+    - fuzzel
+    - rofi
+    - wlogout
+    - fira-code-fonts
   tags:
     - install
     - sway

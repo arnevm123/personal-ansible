@@ -5,16 +5,26 @@
     source_api: "./.zshexports"
     dest_api: "{{ lookup('env', 'HOME') }}/.zshexports"
     ansible_user: "arne"
-  pre_tasks:
-  - name: Update package
-    become: true
-    ansible.builtin.package:
-      name: "*"
-      state: latest
-    tags:
-      - install
-      - core
   tasks:
+    - name: Check if system is Arch-based
+      ansible.builtin.command: lsb_release -is
+      register: distro
+      changed_when: false
+      failed_when: false
+
+    - name: Update package
+      become: true
+      ansible.builtin.package:
+        name: "*"
+        state: latest
+      tags:
+        - install
+        - core
+      when: distro.stdout_lines[0] != "Arch"
+
+    - include: tasks/arch.yml
+      when: distro.stdout_lines[0] == "Arch"
+
     - include: tasks/ssh.yml
     - include: tasks/zsh.yml
     - include: tasks/git.yml
