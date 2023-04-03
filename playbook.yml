@@ -15,7 +15,6 @@
       tags:
         - install
         - core
-
     - name: Include Arch tasks
       include_tasks: tasks/arch.yml
       when: "'arch' in ansible_os_family"
