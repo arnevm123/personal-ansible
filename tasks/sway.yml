@@ -5,7 +5,7 @@
       - sway
       - fuzzel
       - rofi
-      - wlogout
+      - '{{ "wlogout" if ansible_pkg_mgr != "pacman" else "" }}'
       - fira-code-fonts
   tags:
     - install
