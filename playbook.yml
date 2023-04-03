@@ -5,17 +5,16 @@
     source_api: "./.zshexports"
     dest_api: "{{ lookup('env', 'HOME') }}/.zshexports"
     ansible_user: "arne"
-  pre_tasks:
-  - name: Update package
-    become: true
-    when: "'arch' not in ansible_os_family"
-    ansible.builtin.package:
-      name: "*"
-      state: latest
-    tags:
-      - install
-      - core
   tasks:
+    - name: Update package
+      when: "'arch' not in ansible_os_family"
+      become: true
+      ansible.builtin.package:
+        name: "*"
+        state: latest
+      tags:
+        - install
+        - core
     - name: Include Arch tasks
       include_tasks: tasks/arch.yml
       when: "'arch' in ansible_os_family"

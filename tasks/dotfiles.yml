@@ -1,6 +1,6 @@
 - name: Installing stow
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name: stow
     state: present
   tags:
@@ -17,6 +17,16 @@
     accept_hostkey: true
     force: true
     version: main
+  tags:
+    - install
+    - dotfiles
+    - stow
+
+- name: Remove .zshrc file
+  become: true
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.zshrc"
+    state: absent
   tags:
     - install
     - dotfiles
