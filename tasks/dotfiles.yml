@@ -15,6 +15,7 @@
     recursive: true
     update: true
     accept_hostkey: true
+    force: true
     version: main
   when: not ansible_check_mode and not ('~/dotfiles' | isdir)
   tags:
