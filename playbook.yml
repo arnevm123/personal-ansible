@@ -19,5 +19,6 @@
     - include: tasks/zsh.yml
     - include: tasks/git.yml
     - include: tasks/baseApps.yml
+    - include: tasks/flatpak.yml
     - include: tasks/sway.yml
     - include: tasks/dotfiles.yml
