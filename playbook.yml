@@ -6,13 +6,8 @@
     dest_api: "{{ lookup('env', 'HOME') }}/.zshexports"
     ansible_user: "arne"
   tasks:
-    - name: Check if system is Arch-based
-      ansible.builtin.command: lsb_release -is
-      register: distro
-      changed_when: false
-      failed_when: false
-
     - name: Update package
+      when: "'arch' not in ansible_os_family"
       become: true
       ansible.builtin.package:
         name: "*"
@@ -20,11 +15,10 @@
       tags:
         - install
         - core
-      when: distro.stdout_lines[0] != "Arch"
 
-    - include: tasks/arch.yml
-      when: distro.stdout_lines[0] == "Arch"
-
+    - name: Include Arch tasks
+      include_tasks: tasks/arch.yml
+      when: "'arch' in ansible_os_family"
     - include: tasks/ssh.yml
     - include: tasks/zsh.yml
     - include: tasks/git.yml
