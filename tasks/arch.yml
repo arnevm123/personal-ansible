@@ -1,10 +1,22 @@
-- name: Enable AUR on Arch Linux
-  become: true
-  ansible.builtin.lineinfile:
-    path: /etc/pacman.conf
-    regexp: '^#(\[aur\])'
-    line: '\1'
+- name: Update the system
+  pacman:
+    update_cache: true
+    upgrade: true
+
+- name: Install required packages
+  pacman:
+    name: "{{ item }}"
     state: present
-  tags:
-    - archlinux
-    - aur
+  loop:
+    - ansible
+    - python
+
+# Install yay AUR helper
+- name: Install yay AUR helper
+  ansible.builtin.shell: |
+    sudo pacman -S --needed git base-devel
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si --noconfirm
+  args:
+    creates: "/usr/bin/yay"
