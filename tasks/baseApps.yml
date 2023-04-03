@@ -9,7 +9,7 @@
 - name: Install languages
   become: true
   ansible.builtin.dnf:
-    name: ["npm", "dnf", "shellcheck", "luarocks", "g++", "make"]
+    name: ["npm", "dnf", "go", "shellcheck", "luarocks", "g++", "make"]
   tags:
     - install
     - productivity
