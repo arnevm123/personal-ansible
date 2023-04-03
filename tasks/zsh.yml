@@ -37,6 +37,13 @@
     dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
   tags: *tags_for_zsh_tasks
 
+- name: Install zsh-z
+  when: not ohmyzsh_dir.stat.exists
+  ansible.builtin.git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: "~/.oh-my-zsh/plugins/zsh-z"
+  tags: *tags_for_zsh_tasks
+
 - name: Install zsh apikeys
   ansible.builtin.copy:
     src: "{{ source_api }}"
