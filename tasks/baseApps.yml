@@ -9,7 +9,7 @@
 - name: Install WezTerm using Flatpak
   hosts: my_host
   become: true
-  block:
+  tasks:
     - name: Install Flatpak
       ansible.builtin.dnf:
         name: flatpak
