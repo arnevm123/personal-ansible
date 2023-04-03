@@ -23,7 +23,7 @@
     - stow
 
 - name: Stow dotfiles
-  ansible.builtin.shell: cd $HOME/dotfiles && ./linux
+  ansible.builtin.shell: rm ~/.zshrc && cd $HOME/dotfiles && ./linux
   changed_when: false
   tags:
     - install
