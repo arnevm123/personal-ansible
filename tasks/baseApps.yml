@@ -1,8 +1,15 @@
 - name: Install packages
   become: true
   ansible.builtin.dnf:
-    name: ["tmux", "fzf", "wezterm", "neovim", "gimp", "tldr", "ripgrep"]
+    name: ["tmux", "fzf", "neovim", "gimp", "tldr", "ripgrep"]
   tags:
     - install
     - productivity
 
+- name: Install packages using Flatpak
+  become: true
+  flatpak:
+    name: com.github.wez.wezterm
+    state: present
+    remote: flathub
+    install_deps: true
