@@ -24,13 +24,45 @@
 #     - install
 #     - productivity
 #     - languages
+# - name: Install Deno
+#   become: true
+#   ansible.builtin.command: /bin/bash -o pipefail -c "curl -fsSL https://deno.land/x/install/install.sh | sh"
+#   args:
+#     creates: /usr/local/bin/deno
+#   tags:
+#     - install
+#     - productivity
+#     - languages
 
-- name: Install Deno
-  become: true
-  ansible.builtin.command: /bin/bash -o pipefail -c "curl -fsSL https://deno.land/x/install/install.sh | sh"
-  args:
-    creates: /usr/local/bin/deno
+- name: Check if deno is installed
+  changed_when: false
+  ansible.builtin.command: -v deno
+  register: deno_exists
+  ignore_errors: true
   tags:
+    - install
+    - productivity
+    - languages
+
+- name: Download Installer
+  when: deno_exists is failed
+  ansible.builtin.get_url:
+    url: https://deno.land/x/install/install.sh
+    dest: /tmp/sh.deno.rs
+    mode: '0755'
+    force: 'yes'
+  tags:
+    - deno
+    - install
+    - productivity
+    - languages
+
+- name: Install deno
+  when: cargo_exists is failed
+  changed_when: false
+  ansible.builtin.command: /tmp/sh.deno.rs -y
+  tags:
+    - deno
     - install
     - productivity
     - languages
