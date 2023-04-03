@@ -58,7 +58,7 @@
     - languages
 
 - name: Install deno
-  when: cargo_exists is failed
+  when: deno_exists is failed
   changed_when: false
   ansible.builtin.command: /tmp/sh.deno.rs -y
   tags:
