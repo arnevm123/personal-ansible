@@ -1,7 +1,8 @@
 - name: Install packages
   become: true
   ansible.builtin.dnf:
-    name: ["tmux", "fzf", "neovim", "gimp", "tldr", "ripgrep"]
+    name: ["tmux", "fzf", "wezterm", "neovim", "gimp", "tldr", "ripgrep"]
   tags:
     - install
     - productivity
+
