@@ -4,6 +4,7 @@
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     source_api: "./.zshexports"
     dest_api: "{{ lookup('env', 'HOME') }}/.zshexports"
+    ansible_user: "arne"
   pre_tasks:
   - name: Update dnf
     become: true
