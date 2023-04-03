@@ -31,16 +31,16 @@
   ansible.builtin.script: /tmp/install-oh-my-zsh.sh --unattended
 
 - name: Install zsh-autosuggestions
-  when: not ohmyzsh_dir.stat.exists
+  when: not ohmyzsh_dir.stat.exists and not ('~/.oh-my-zsh/plugins/zsh-autosuggestions' | isdir)
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
     dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
   tags: *tags_for_zsh_tasks
 
 - name: Install zsh-z
-  when: not ohmyzsh_dir.stat.exists
+  when: not ohmyzsh_dir.stat.exists and not ('~/.oh-my-zsh/plugins/zsh-z' | isdir)
   ansible.builtin.git:
-    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    repo: 'https://github.com/agkozak/zsh-z'
     dest: "~/.oh-my-zsh/plugins/zsh-z"
   tags: *tags_for_zsh_tasks
 
