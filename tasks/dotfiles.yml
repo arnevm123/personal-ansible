@@ -1,5 +1,8 @@
 - name: Installing stow
-  ansible.builtin.dnf: name=stow
+  become: true
+  ansible.builtin.dnf:
+    name: stow
+    state: present
   tags:
     - install
     - dotfiles
