@@ -22,10 +22,11 @@
     - dotfiles
     - stow
 
-- name: Remove zshrc
-  ansible.builtin.shell: rm $HOME/.zshrc
-  changed_when: false
-  ignore_error: true
+- name: Remove .zshrc file
+  become: true
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.zshrc"
+    state: absent
   tags:
     - install
     - dotfiles
