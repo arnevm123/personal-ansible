@@ -14,6 +14,6 @@
 - name: Install WezTerm
   become: true
   flatpak:
-    name: com.github.wez.wezterm
+    name: org.wezfurlong.wezterm
     state: present
     remote: flathub
