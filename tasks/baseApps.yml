@@ -3,6 +3,7 @@
   ansible.builtin.package:
     name:
       - tmux
+      - curl
       - fzf
       - neovim
       - gimp
