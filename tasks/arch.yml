@@ -16,6 +16,7 @@
 # Install yay AUR helper
 - name: Install paru AUR helper
   become: true
+  become_user: "{{ ansible_user }}"
   ansible.builtin.shell: |
     sudo pacman -S --needed git base-devel
     git clone https://aur.archlinux.org/paru.git
