@@ -13,13 +13,13 @@
     - ansible
     - python
 
-# Install yay AUR helper
-- name: Install yay AUR helper
+# Install paru AUR helper
+- name: Install paru AUR helper
   become: true
   ansible.builtin.shell: |
     sudo pacman -S --needed git base-devel
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
     makepkg -si --noconfirm
   args:
-    creates: "/usr/bin/yay"
+    creates: "/usr/bin/paru"

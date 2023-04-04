@@ -12,10 +12,10 @@
     - sway
     - productivity
 
-- name: Install wlogout
+- name: Install wlogout on arch
   become: true
   changed_when: false
-  ansible.builtin.command: yay -S wlogout
+  ansible.builtin.command: paru -S wlogout
   when: "ansible_pkg_mgr == 'pacman'"
   tags:
     - install
