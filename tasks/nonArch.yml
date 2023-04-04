@@ -1,0 +1,7 @@
+- name: Update dnf or apt
+  become: true
+  ansible.builtin.package:
+    name: "*"
+  tags:
+    - install
+    - core

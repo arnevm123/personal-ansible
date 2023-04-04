@@ -6,15 +6,9 @@
     dest_api: "{{ lookup('env', 'HOME') }}/.zshexports"
     ansible_user: "arne"
   tasks:
-    - name: Update package
+    - name: Non Arch tasks
+      include_tasks: tasks/nonArch.yml
       when: "ansible_pkg_mgr != 'pacman'"
-      become: true
-      ansible.builtin.package:
-        name: "*"
-        state: latest
-      tags:
-        - install
-        - core
     - name: Include Arch tasks
       include_tasks: tasks/arch.yml
       when: "ansible_pkg_mgr == 'pacman'"

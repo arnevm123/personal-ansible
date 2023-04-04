@@ -26,8 +26,8 @@
       - luarocks
       - make
       - ansible-lint
-      - '{{ "python3-pip" if ansible_pkg_mgr != "pacman" else "" }}'
-      - '{{ "g++" if ansible_pkg_mgr != "pacman" else "" }}'
+      - '{{ "python3-pip" if ansible_pkg_mgr != "pacman" else "python-pip" }}'
+      - '{{ "g++" if ansible_pkg_mgr != "pacman" else "gcc" }}'
   tags:
     - install
     - productivity
