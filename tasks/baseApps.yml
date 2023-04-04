@@ -21,7 +21,7 @@
     name:
       - nodejs
       - npm
-      - go
+      - '{{ "go" if ansible_pkg_mgr != "apt" else "golang-go" }}'
       - shellcheck
       - luarocks
       - make
