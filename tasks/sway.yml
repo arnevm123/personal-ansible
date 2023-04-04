@@ -6,7 +6,17 @@
       - fuzzel
       - rofi
       - '{{ "wlogout" if ansible_pkg_mgr != "pacman" else "" }}'
-      - '{{ "fira-code-fonts" if ansible_pkg_mgr != "pacman" else "" }}'
+      - '{{ "fira-code-fonts" if ansible_pkg_mgr != "pacman" else "ttf-fira-code" }}'
+  tags:
+    - install
+    - sway
+    - productivity
+
+- name: Install wlogout
+  become: true
+  changed_when: false
+  ansible.builtin.command: yay -S wlogout
+  when: "ansible_pkg_mgr == 'pacman'"
   tags:
     - install
     - sway
