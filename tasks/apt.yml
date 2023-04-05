@@ -1,5 +1,4 @@
 - name: Install fuzzel and fira code on ubuntu
-  hosts: all
   become: true
   block:
     - name: Install dependencies
