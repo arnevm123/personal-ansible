@@ -36,6 +36,7 @@
 
 - name: Configure the build
   changed_when: false
+  become: true
   ansible.builtin.command: meson --buildtype=release -Denable-cairo=enabled -Dpng-backend=libpng -Dsvg-backend=librsvg ../..
 
 - name: Build fuzzel
@@ -44,5 +45,5 @@
 
 - name: Install fuzzel
   changed_when: false
-  ansible.builtin.command: ninja install
   become: true
+  ansible.builtin.command: ninja install
