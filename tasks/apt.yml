@@ -17,6 +17,12 @@
       - libpng-dev
     state: present
 
+- name: Install zsh-autosuggestions
+  ansible.builtin.git:
+    repo: 'https://codeberg.org/dnkl/fuzzel.git'
+    dest: "~/fuzzel"
+    force: true
+
 - name: Create build directory
   ansible.builtin.file:
     path: ~/fuzzel/bld/release
