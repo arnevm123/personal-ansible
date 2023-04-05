@@ -1,0 +1,19 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: Install dependencies
+      apt:
+        name:
+          - python3
+          - python3-pip
+          - libglib2.0-0
+          - libsm6
+          - libxext6
+          - libxrender-dev
+        update_cache: yes
+
+    - name: Install Fuzzel
+      pip:
+        name: fuzzel
+        state: present
+        executable: pip3

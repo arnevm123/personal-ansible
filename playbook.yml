@@ -18,4 +18,7 @@
     - include: tasks/baseApps.yml
     - include: tasks/flatpak.yml
     - include: tasks/sway.yml
+    - name: Include Apt tasks
+      include_tasks: tasks/apt.yml
+      when: "ansible_pkg_mgr == 'apt'"
     - include: tasks/dotfiles.yml
