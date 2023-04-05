@@ -6,7 +6,7 @@
       - '{{ "fuzzel" if ansible_pkg_mgr != "apt" else "curl" }}'
       - rofi
       - '{{ "wlogout" if ansible_pkg_mgr != "pacman" else "curl" }}'
-      - '{{ "fira-code-fonts" if ansible_pkg_mgr == apt else "ttf-fira-code" if ansible_pkg_mgr == "pacman" else "curl" }}'
+      - '{{ "fira-code-fonts" if ansible_pkg_mgr == "apt" else "ttf-fira-code" if ansible_pkg_mgr == "pacman" else "curl" }}'
   tags:
     - install
     - sway
