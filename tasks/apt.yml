@@ -1,6 +1,7 @@
 - name: Install extra repository
   become: true
-  ansible.builtin.command: sudo add-apt-repository universe
+  changed_when: true
+  ansible.builtin.command: add-apt-repository universe -y
 
 - name: Install dependencies for fuzzel
   become: true
