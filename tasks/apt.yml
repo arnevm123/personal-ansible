@@ -39,4 +39,4 @@
 
     - name: Clear font cache
       when_changed: false
-      command: fc-cache -f "{{ lookup('env','HOME') }}/.local/share/fonts"
+      ansible.builtin.command: fc-cache -f "{{ lookup('env','HOME') }}"/.local/share/fonts
