@@ -3,3 +3,36 @@
   ansible.builtin.apt_repository:
     repo: universe
     state: present
+
+- name: Install dependencies for fuzzel
+  become: true
+  ansible.builtin.apt:
+    name:
+      - meson
+      - ninja-build
+      - librsvg2-dev
+      - libx11-dev
+      - libxtst-dev
+      - libxkbfile-dev
+      - libcairo2-dev
+      - libpng-dev
+    state: present
+
+- name: Create build directory
+  ansible.builtin.file:
+    path: ~/fuzzel/bld/release
+    state: directory
+    mode: '0755'
+
+- name: Configure the build
+  changed_when: false
+  ansible.builtin.command: meson --buildtype=release -Denable-cairo=enabled -Dpng-backend=libpng -Dsvg-backend=librsvg ~/fuzzel/bld/release
+
+- name: Build fuzzel
+  changed_when: false
+  ansible.builtin.command: ninja -C ~/fuzzel/bld/release
+
+- name: Install fuzzel
+  changed_when: false
+  ansible.builtin.command: ninja -C ~/fuzzel/bld/release install
+  become: true
