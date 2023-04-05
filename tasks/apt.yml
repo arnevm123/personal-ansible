@@ -38,5 +38,4 @@
         extra_opts: [--no-same-owner]
 
     - name: Clear font cache
-      when_changed: false
-      ansible.builtin.command: fc-cache -f ~/.local/share/fonts
+      ansible.builtin.command: fc-cache -f "{{ lookup('env', 'HOME') }}/.local/share/fonts"
