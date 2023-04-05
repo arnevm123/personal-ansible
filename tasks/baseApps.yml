@@ -12,6 +12,7 @@
       - htop
       - lsof
       - shutter
+      - firefox
   tags:
     - install
     - productivity
