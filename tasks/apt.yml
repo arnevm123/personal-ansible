@@ -16,7 +16,7 @@
       - libcairo2-dev
       - libpng-dev
       - wayland-protocols
-      - wayland-client
+      - waylandpp-dev
     state: present
 
 - name: Clone fuzzel
