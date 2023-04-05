@@ -3,9 +3,9 @@
   ansible.builtin.package:
     name:
       - sway
-      - '{{ "fuzzel" if ansible_pkg_mgr != "apt" }}'
+      - '{{ "fuzzel" if ansible_pkg_mgr != "apt" else "curl" }}'
       - rofi
-      - '{{ "wlogout" if ansible_pkg_mgr != "pacman" }}'
+      - '{{ "wlogout" if ansible_pkg_mgr != "pacman" else "curl" }}'
       - '{{ "fira-code-fonts" if ansible_pkg_mgr != "pacman" else "ttf-fira-code" }}'
   tags:
     - install
