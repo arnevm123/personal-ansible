@@ -18,13 +18,6 @@
       - wayland-protocols
     state: present
 
-- name: Clone fuzzel
-  ansible.builtin.git:
-    repo: 'https://codeberg.org/dnkl/fuzzel.git'
-    dest: "~/fuzzel"
-    force: true
-
-
 - name: Create build directory
   become: true
   ansible.builtin.file:
@@ -32,21 +25,14 @@
     state: directory
     mode: '0755'
 
-- name: Go into fuzzel folder
-  changed_when: false
-  ansible.builtin.shell:
-    chdir: ~/fuzzel/bld/release
-
 - name: Configure the build
-  changed_when: false
-  become: true
-  ansible.builtin.command: meson --buildtype=release -Denable-cairo=enabled -Dpng-backend=libpng -Dsvg-backend=librsvg ../..
+  when_changed: false
+  ansible.builtin.command: meson --buildtype=release -Denable-cairo=enabled -Dpng-backend=libpng -Dsvg-backend=librsvg ~/fuzzel/bld/release
 
 - name: Build fuzzel
-  changed_when: false
-  ansible.builtin.command: ninja
+  when_changed: false
+  ansible.builtin.command: ninja -C ~/fuzzel/bld/release
 
 - name: Install fuzzel
-  changed_when: false
-  become: true
-  ansible.builtin.command: ninja install
+  when_changed: false
+  ansible.builtin.command: ninja -C ~/fuzzel/bld/release install
