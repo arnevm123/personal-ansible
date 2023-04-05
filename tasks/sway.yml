@@ -42,7 +42,7 @@
   ansible.builtin.package:
     name:
       - light
-      - mako
+      - '{{ "mako" if ansible_pkg_mgr != "apt" else "mako-notifier" }}'
       - ncmpcpp
       - pavucontrol
       - ranger
