@@ -31,9 +31,9 @@
     state: directory
     mode: '0755'
 
-- name: Go into fuzzel foldre
-  changed_when: false
-  ansible.builtin.command: cd ~/fuzzel/bld/release
+- name: Go into fuzzel folder
+  ansible.builtin.shell:
+    chdir: ~/fuzzel/bld/release
 
 - name: Configure the build
   changed_when: false
