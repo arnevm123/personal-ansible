@@ -27,11 +27,12 @@
 - name: Create build directory
   become: true
   ansible.builtin.file:
-    path: /bld/release
+    path: ~/fuzzel/bld/release
     state: directory
     mode: '0755'
 
 - name: Go into fuzzel folder
+  changed_when: false
   ansible.builtin.shell:
     chdir: ~/fuzzel/bld/release
 
