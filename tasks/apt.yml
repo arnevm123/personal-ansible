@@ -17,27 +17,32 @@
       - libpng-dev
     state: present
 
-- name: Install zsh-autosuggestions
+- name: Clone fuzzel
   ansible.builtin.git:
     repo: 'https://codeberg.org/dnkl/fuzzel.git'
     dest: "~/fuzzel"
     force: true
 
+
 - name: Create build directory
   ansible.builtin.file:
-    path: ~/fuzzel/bld/release
+    path: /bld/release
     state: directory
     mode: '0755'
 
+- name: Go into fuzzel foldre
+  changed_when: false
+  ansible.builtin.command: cd ~/fuzzel/bld/release
+
 - name: Configure the build
   changed_when: false
-  ansible.builtin.command: meson --buildtype=release -Denable-cairo=enabled -Dpng-backend=libpng -Dsvg-backend=librsvg ~/fuzzel/bld/release
+  ansible.builtin.command: meson --buildtype=release -Denable-cairo=enabled -Dpng-backend=libpng -Dsvg-backend=librsvg ../..
 
 - name: Build fuzzel
   changed_when: false
-  ansible.builtin.command: ninja -C ~/fuzzel/bld/release
+  ansible.builtin.command: ninja
 
 - name: Install fuzzel
   changed_when: false
-  ansible.builtin.command: ninja -C ~/fuzzel/bld/release install
+  ansible.builtin.command: ninja install
   become: true
