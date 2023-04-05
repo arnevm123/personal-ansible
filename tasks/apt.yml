@@ -18,6 +18,12 @@
       - wayland-protocols
     state: present
 
+- name: Clone fuzzel
+  ansible.builtin.git:
+    repo: 'https://codeberg.org/dnkl/fuzzel.git'
+    dest: "~/fuzzel"
+    force: true
+
 - name: Create build directory
   become: true
   ansible.builtin.file:
