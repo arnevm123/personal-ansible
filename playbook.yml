@@ -12,13 +12,13 @@
     - name: Include Arch tasks
       include_tasks: tasks/arch.yml
       when: "ansible_pkg_mgr == 'pacman'"
+    - name: Include Apt tasks
+      include_tasks: tasks/apt.yml
+      when: "ansible_pkg_mgr == 'apt'"
     - include: tasks/ssh.yml
     - include: tasks/zsh.yml
     - include: tasks/git.yml
     - include: tasks/baseApps.yml
     - include: tasks/flatpak.yml
     - include: tasks/sway.yml
-    - name: Include Apt tasks
-      include_tasks: tasks/apt.yml
-      when: "ansible_pkg_mgr == 'apt'"
     - include: tasks/dotfiles.yml
