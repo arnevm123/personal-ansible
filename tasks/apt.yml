@@ -15,6 +15,7 @@
       - libxkbfile-dev
       - libcairo2-dev
       - libpng-dev
+      - wayland-protocols
     state: present
 
 - name: Clone fuzzel
