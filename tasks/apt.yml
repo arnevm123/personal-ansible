@@ -1,6 +1,6 @@
 - name: Install extra repository
   become: true
-  changed_when: true
+  changed_when: false
   ansible.builtin.command: add-apt-repository universe -y
 
 - name: Install dependencies for fuzzel
@@ -26,13 +26,13 @@
     mode: '0755'
 
 - name: Configure the build
-  when_changed: false
+  changed_when: false
   ansible.builtin.command: meson --buildtype=release -Denable-cairo=enabled -Dpng-backend=libpng -Dsvg-backend=librsvg ~/fuzzel/bld/release
 
 - name: Build fuzzel
-  when_changed: false
+  changed_when: false
   ansible.builtin.command: ninja -C ~/fuzzel/bld/release
 
 - name: Install fuzzel
-  when_changed: false
+  changed_when: false
   ansible.builtin.command: ninja -C ~/fuzzel/bld/release install
