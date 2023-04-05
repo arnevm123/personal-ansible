@@ -31,19 +31,21 @@
     state: directory
     mode: '0755'
 
+- name: Go into fuzzel folder
+  changed_when: false
+  ansible.builtin.shell:
+    chdir: ~/fuzzel/bld/release
+
 - name: Configure the build
   changed_when: false
-  path: ~/fuzzel/bld/release
   become: true
   ansible.builtin.command: meson --buildtype=release -Denable-cairo=enabled -Dpng-backend=libpng -Dsvg-backend=librsvg ../..
 
 - name: Build fuzzel
   changed_when: false
-  path: ~/fuzzel/bld/release
   ansible.builtin.command: ninja
 
 - name: Install fuzzel
   changed_when: false
-  path: ~/fuzzel/bld/release
   become: true
   ansible.builtin.command: ninja install
