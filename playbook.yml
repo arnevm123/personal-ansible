@@ -22,7 +22,7 @@
     #         else 'dnf update -y' if package_manager == 'dnf'
     #         else ''
     #       }}"
-      command: "{{ update_command }}"
+    #  command: "{{ update_command }}"
     - name: Include Arch tasks
       include_tasks: tasks/arch.yml
       when: "ansible_pkg_mgr == 'pacman'"
