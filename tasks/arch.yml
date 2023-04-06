@@ -1,18 +1,3 @@
-- name: Update the system
-  become: true
-  community.general.pacman:
-    update_cache: true
-    upgrade: true
-
-- name: Install required packages
-  become: true
-  community.general.pacman:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - ansible
-    - python
-
 # Install yay AUR helper
 - name: Install yay AUR helper
   become: true
