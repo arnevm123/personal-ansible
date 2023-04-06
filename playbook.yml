@@ -8,7 +8,7 @@
   tasks:
     - name: Update and upgrade packages on Arch Linux
       become: true
-      package:
+      ansible.builtin.package:
         name: "*"
         state: latest
         update_cache: yes
