@@ -8,9 +8,11 @@
     - dotfiles
     - stow
 
-- name: Cloning dotfiles
-  ansible.builtin.shell:
-    git clone git@github.com:arnevm123/dotfiles.git ~/dotfiles
+- name: Clone dotfiles repository
+  ansible.builtin.git:
+    repo: https://github.com/<username>/dotfiles.git
+    dest: ~/dotfiles
+    force: true
   tags:
     - install
     - dotfiles
