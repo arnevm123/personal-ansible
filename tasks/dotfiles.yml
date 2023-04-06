@@ -12,6 +12,7 @@
   ansible.builtin.git:
     repo: https://github.com/arnevm123/dotfiles.git
     dest: ~/dotfiles
+    recursive: true
     force: true
   tags:
     - install
