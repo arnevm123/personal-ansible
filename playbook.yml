@@ -6,7 +6,7 @@
     dest_api: "{{ lookup('env', 'HOME') }}/.zshexports"
     ansible_user: "arne"
   tasks:
-    - name: Update and upgrade packages on Arch Linux
+    - name: Update and upgrade packages
       become: true
       ansible.builtin.package:
         name: "*"
