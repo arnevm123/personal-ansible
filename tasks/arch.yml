@@ -1,12 +1,12 @@
 - name: Update the system
   become: true
-  pacman:
+  community.general.pacman:
     update_cache: true
     upgrade: true
 
 - name: Install required packages
   become: true
-  pacman:
+  community.general.pacman:
     name: "{{ item }}"
     state: present
   loop:
@@ -14,13 +14,13 @@
     - python
 
 # Install yay AUR helper
-- name: Install paru AUR helper
+- name: Install yay AUR helper
   become: true
   become_user: "{{ ansible_user }}"
   ansible.builtin.shell: |
     sudo pacman -S --needed git base-devel
-    git clone https://aur.archlinux.org/paru.git
-    cd paru
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
     makepkg -si --noconfirm
   args:
-    creates: "/usr/bin/paru"
+    creates: "/usr/bin/yay"
