@@ -10,7 +10,7 @@
 
 - name: Clone dotfiles repository
   ansible.builtin.git:
-    repo: https://github.com/<username>/dotfiles.git
+    repo: https://github.com/arnevm123/dotfiles.git
     dest: ~/dotfiles
     force: true
   tags:
