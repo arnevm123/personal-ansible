@@ -19,6 +19,16 @@
     - dotfiles
     - stow
 
+- name: Install
+  ansible.builtin.git:
+    repo: https://github.com/jimeh/tmuxifier.git
+    dest: "~/.tmuxifier"
+    force: true
+  tags:
+    - install
+    - dotfiles
+    - stow
+
 - name: Remove .zshrc file
   become: true
   ansible.builtin.file:
