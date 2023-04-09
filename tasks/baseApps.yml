@@ -5,7 +5,7 @@
       - tmux
       - curl
       - fzf
-      - neovim
+      - '{{ "neovim" if ansible_pkg_mgr != "apt" else "curl" }}'
       - gimp
       - tldr
       - ripgrep

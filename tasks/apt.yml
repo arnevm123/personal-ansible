@@ -2,3 +2,34 @@
   become: true
   changed_when: false
   ansible.builtin.command: add-apt-repository universe -y
+
+- name: Remove neovim
+  changed_when: false
+  ansible.builtin.command: rm -rf ~/neovim
+  tags:
+    - install
+    - neovim
+
+- name: Clone Neovim
+  changed_when: false
+  ansible.builtin.git:
+    repo: 'https://github.com/neovim/neovim.git'
+    dest: "{{ lookup('env', 'HOME') }}/neovim"
+  tags:
+    - install
+    - neovim
+
+- name: Build neovim
+  changed_when: false
+  ansible.builtin.shell: "cd {{ lookup('env', 'HOME') }}/neovim && make -j 20"
+  tags:
+    - install
+    - neovim
+
+- name: Install neovim
+  changed_when: false
+  become: true
+  ansible.builtin.shell: "cd {{ lookup('env', 'HOME') }}/neovim && make install"
+  tags:
+    - install
+    - neovim
