@@ -8,6 +8,7 @@
   tasks:
     - name: Update and upgrade packages
       become: true
+      when: "ansible_pkg_mgr != 'apt'"
       ansible.builtin.package:
         name: "*"
         state: latest
