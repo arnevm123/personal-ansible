@@ -3,17 +3,18 @@
   ansible.builtin.package:
     name: flatpak
     state: present
+  tags:
+    - flatpak
 
 - name: Add Flathub remote
-  become: true
-  flatpak_remote:
-    name: flathub
-    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-    state: present
+  become: yes
+  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 - name: Install WezTerm
   become: true
   flatpak:
+    remote: flathub
     name: org.wezfurlong.wezterm
     state: present
-    remote: flathub
+  tags:
+    - flatpak
