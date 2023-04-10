@@ -48,6 +48,7 @@
       - ranger
       - swaylock
       - swaybg
+      - wdisplays
   tags:
     - install
     - sway
