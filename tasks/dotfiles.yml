@@ -46,3 +46,11 @@
     - install
     - dotfiles
     - stow
+
+- name: Get the master branch of my nvim config
+  ansible.builtin.shell: cd $HOME/.config/nvim && git checkout master
+  changed_when: false
+  tags:
+    - install
+    - dotfiles
+    - stow
