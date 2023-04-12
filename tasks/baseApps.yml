@@ -30,6 +30,9 @@
       - ansible-lint
       - '{{ "python3-pip" if ansible_pkg_mgr != "pacman" else "python-pip" }}'
       - '{{ "g++" if ansible_pkg_mgr != "pacman" else "gcc" }}'
+      - sqlite
+      - sqlite-devel
+      - sqlite-tcl
   tags:
     - install
     - productivity
