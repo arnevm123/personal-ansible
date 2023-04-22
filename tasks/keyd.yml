@@ -1,0 +1,16 @@
+- name: Clone the keyd repository
+  git:
+    repo: https://github.com/rvaiya/keyd
+    dest: /opt/keyd
+    version: master
+
+- name: Compile and install keyd
+  ansible.builtin.command: make && sudo make install
+  args:
+    chdir: /opt/keyd
+
+- name: Enable and start keyd service
+  ansible.builtin.systemd:
+    name: keyd
+    state: started
+    enabled: true
