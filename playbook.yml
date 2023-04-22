@@ -36,5 +36,5 @@
     - include: tasks/baseApps.yml
     - include: tasks/flatpak.yml
     - include: tasks/sway.yml
-    - include: tasks/keyd.yml
     - include: tasks/dotfiles.yml
+    - include: tasks/keyd.yml

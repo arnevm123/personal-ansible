@@ -14,3 +14,7 @@
     name: keyd
     state: started
     enabled: true
+
+- name: setup my config
+  become: true
+  ansible.builtin.command: cp ~/dotfiles/keyd/default.conf /etc/keyd/default.conf
